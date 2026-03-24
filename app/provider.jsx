@@ -86,9 +86,9 @@ const Provider = ({ children }) => {
                 .eq('id', authUser.id) // Query by the user's unique 'id' (uuid).
                 .single();
 
-            if (selectError && selectError.code !== 'PGRST116') { // 'PGRST116' means "row not found", which is fine.
-                console.error("Error fetching user profile:", selectError);
-                return;
+        if (selectError && selectError.code !== 'PGRST116') { // 'PGRST116' means "row not found", which is fine.
+            console.error("Error fetching user profile:", selectError, JSON.stringify(selectError, null, 2));
+            return;
             }
 
             // If the user profile already exists in our table, set it and we're done.

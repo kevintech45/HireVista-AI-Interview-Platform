@@ -4,7 +4,7 @@ import {FEEDBACK_PROMPT} from '@/services/Constants'
 
 export async function POST(req) {
     
-    const {conversation} = await req.json
+    const {conversation} = await req.json()
     const FINAL_PROMPT = FEEDBACK_PROMPT.replace('{{conversation}}',JSON.stringify(conversation))
 
     try
@@ -16,7 +16,7 @@ export async function POST(req) {
         });
 
         const completion = await openai.chat.completions.create({
-        model: 'llama3-8b-8192',
+        model: 'llama-3.1-8b-instant',
         messages: [
             {
                 role: 'user',
